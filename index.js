@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 
 const mongoose =require('./db.js');
 
+
+var employeeController=require('./controller/employeeController');
+var mashController=require('./controller/mashController');
+
 const port = process.env.PORT || 3000;
 
 
@@ -20,8 +24,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-var employeeController=require('./controller/employeeController');
-var mashController=require('./controller/mashController');
+
+app.use('/employee',employeeController);
+app.use('/mash',mashController);
  
 // app.use(bodyParser.json());
 
@@ -29,5 +34,3 @@ app.listen(port, () => {
     console.log('listening on port:' + port);
 
 });
-app.use('/employee',employeeController);
-app.use('/mash',mashController);
